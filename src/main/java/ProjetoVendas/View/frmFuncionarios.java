@@ -494,6 +494,12 @@ public class frmFuncionarios extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         jLabel17.setText("Nome:");
 
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
+            }
+        });
+
         btnPesquisar.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -781,6 +787,38 @@ public class frmFuncionarios extends javax.swing.JFrame {
             //System.out.println(obj.getUf());          
         }
     }//GEN-LAST:event_ftxtCepKeyPressed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        String nome = txtPesquisa.getText() + "%";
+
+        FuncionariosDao dao = new FuncionariosDao();
+        List<Funcionarios> lista = dao.buscarFuncionarioPorNome(nome);
+
+        DefaultTableModel dados = (DefaultTableModel) tblFuncionarios.getModel();
+        dados.setNumRows(0);
+
+        for (Funcionarios c : lista) {
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getSenha(),
+                c.getCargo(),
+                c.getNivel_acesso(),
+                c.getTelefone(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getComplemento(),
+                c.getBairro(),
+                c.getCidade(),
+                c.getUf()
+            });
+        }
+    }//GEN-LAST:event_txtPesquisaKeyPressed
 
     /**
      * @param args the command line arguments

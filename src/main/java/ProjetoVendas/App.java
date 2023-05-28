@@ -4,13 +4,14 @@
 package ProjetoVendas;
 
 import ProjetoVendas.View.frmCliente;
+import ProjetoVendas.View.frmLogin;
 
 public class App {       
     
 
     public static void main(String[] args) {
         
-        frmCliente form = new frmCliente();
+        frmLogin form = new frmLogin();
         form.setVisible(true);
     }
 }

@@ -3,6 +3,8 @@ package ProjetoVendas.Dao;
 import ProjetoVendas.JDBC.ConnectionFactory;
 import ProjetoVendas.Model.Funcionarios;
 import ProjetoVendas.Model.WebServiceCep;
+import ProjetoVendas.View.frmLogin;
+import ProjetoVendas.View.frmMenu;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -246,5 +248,32 @@ public class FuncionariosDao {
             JOptionPane.showMessageDialog(null, "Cep não encontrado.");            
         }                    
         return obj;   
-    }    
+    }
+
+
+    public void logar(String email, String senha) {
+       
+        try {
+            
+            String sql = "SELECT * from tb_funcionarios WHERE email = ? AND senha = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                JOptionPane.showMessageDialog(null, "Usuário logado com sucesso.");
+                frmMenu tela = new frmMenu();
+                tela.setVisible(true);
+                
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Login ou senha incorretos.");
+            }    
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar logar: " + e);
+        }
+    }
 }

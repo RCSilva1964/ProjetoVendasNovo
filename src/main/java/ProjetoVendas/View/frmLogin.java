@@ -144,9 +144,9 @@ public class frmLogin extends javax.swing.JFrame {
             senha = txtSenha.getText();
             
             FuncionariosDao dao = new FuncionariosDao();
-            dao.logar(email, senha);
-            this.dispose();
-                    
+            dao.logar(email, senha);       
+            
+           this.dispose();                    
             
         } catch (Exception e) {
         }

@@ -265,10 +265,11 @@ public class FuncionariosDao {
             if(rs.next()) {
                 JOptionPane.showMessageDialog(null, "Usuário logado com sucesso.");
                 frmMenu tela = new frmMenu();
+                tela.usarioLogado = rs.getString("nome");
                 tela.setVisible(true);
                 
             }
-            else {
+            else {                
                 JOptionPane.showMessageDialog(null, "Login ou senha incorretos.");
             }    
             

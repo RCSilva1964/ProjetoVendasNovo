@@ -5,6 +5,7 @@
 package ProjetoVendas.View;
 
 import ProjetoVendas.Dao.FuncionariosDao;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -137,16 +138,20 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
-        try {
-            
+        try {            
             String email, senha;
             email = txtEmail.getText();
             senha = txtSenha.getText();
             
             FuncionariosDao dao = new FuncionariosDao();
-            dao.logar(email, senha);       
-            
-           this.dispose();                    
+                        
+            if(dao.logar(email, senha)){
+                this.dispose();
+            }else {
+                txtEmail.setText("");
+                txtSenha.setText("");
+                txtEmail.requestFocus();
+            }                                                       
             
         } catch (Exception e) {
         }

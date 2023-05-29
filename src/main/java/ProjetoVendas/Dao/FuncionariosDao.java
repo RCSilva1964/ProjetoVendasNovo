@@ -251,7 +251,7 @@ public class FuncionariosDao {
     }
 
 
-    public void logar(String email, String senha) {
+    public boolean logar(String email, String senha) {
        
         try {
             
@@ -267,14 +267,16 @@ public class FuncionariosDao {
                 frmMenu tela = new frmMenu();
                 tela.usarioLogado = rs.getString("nome");
                 tela.setVisible(true);
+                return true;
                 
             }
             else {                
-                JOptionPane.showMessageDialog(null, "Login ou senha incorretos.");
+                JOptionPane.showMessageDialog(null, "Login ou senha incorretos.");                                
             }    
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar logar: " + e);
+            //JOptionPane.showMessageDialog(null, "Erro ao tentar logar: " + e);
         }
+        return false;
     }
 }

@@ -35,9 +35,9 @@ public class frmFornecedores extends javax.swing.JFrame {
                 c.getCidade(),
                 c.getUf()
             });
-
         }
     }
+    
 
     public frmFornecedores() {
         initComponents();
@@ -575,7 +575,7 @@ public class frmFornecedores extends javax.swing.JFrame {
             obj.setId(Integer.parseInt(txtCodigo.getText()));
 
             FornecedoresDao dao = new FornecedoresDao();
-           // dao.alterarFornecedor(obj);
+            dao.alterarFornecedor(obj);
 
         } catch (Exception e) {
         }
@@ -583,6 +583,7 @@ public class frmFornecedores extends javax.swing.JFrame {
         new Utilitarios().LimpaTela(jpnDadosPessoais);
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    
     private void tblFornecedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFornecedoresMouseClicked
 
         jTabbedPane1.setSelectedIndex(0);
@@ -611,7 +612,7 @@ public class frmFornecedores extends javax.swing.JFrame {
             obj.setId(Integer.parseInt(txtCodigo.getText()));
 
             FornecedoresDao dao = new FornecedoresDao();
-            dao.excluirCliente(obj);
+            dao.excluirFornecedor(obj);
 
         } catch (Exception e) {
         }
@@ -660,6 +661,7 @@ public class frmFornecedores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    
     private void btnPesquisarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDadosActionPerformed
 
         String nome = txtNome.getText();
@@ -689,6 +691,7 @@ public class frmFornecedores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPesquisarDadosActionPerformed
 
+    
     private void ftxtCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxtCepKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Fornecedores obj = new Fornecedores();

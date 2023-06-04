@@ -53,52 +53,51 @@ public class FornecedoresDao {
     }
     
     
-     public void alterarCliente(Clientes obj) {
+     public void alterarFornecedor(Fornecedores obj) {
 
         try {
-            String sql = "UPDATE tb_clientes SET nome = ?, rg = ?, cpf = ?, email = ?, telefone = ?, "
+            String sql = "UPDATE tb_ SET nome = ?, cnpj = ?, email = ?, telefone = ?, "
                     + "celular = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?,"
                     + " cidade = ?, estado = ? WHERE id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, obj.getNome());
-            stmt.setString(2, obj.getRg());
-            stmt.setString(3, obj.getCpf());
-            stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getTelefone());
-            stmt.setString(6, obj.getCelular());
-            stmt.setString(7, obj.getCep());
-            stmt.setString(8, obj.getEndereco());
-            stmt.setInt(9, obj.getNumero());
-            stmt.setString(10, obj.getComplemento());
-            stmt.setString(11, obj.getBairro());
-            stmt.setString(12, obj.getCidade());
-            stmt.setString(13, obj.getUf());
-            stmt.setInt(14, obj.getId());
+           stmt.setString(1, obj.getNome());
+            stmt.setString(2, obj.getCnpj());            
+            stmt.setString(3, obj.getEmail());
+            stmt.setString(4, obj.getTelefone());
+            stmt.setString(5, obj.getCelular());
+            stmt.setString(6, obj.getCep());
+            stmt.setString(7, obj.getEndereco());
+            stmt.setInt(8, obj.getNumero());
+            stmt.setString(9, obj.getComplemento());
+            stmt.setString(10, obj.getBairro());
+            stmt.setString(11, obj.getCidade());
+            stmt.setString(12, obj.getUf());
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso.");
+            JOptionPane.showMessageDialog(null, "Fornecedore atualizado com sucesso.");
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar cliente." + erro);
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar fornecedor." + erro);
         }
     }
+     
 
-    public void excluirCliente(Clientes obj) {
+    public void excluirFornecedor(Fornecedores obj) {
 
         try {
-            String sql = "DELETE FROM tb_clientes WHERE id = ?";
+            String sql = "DELETE FROM tb_fornecedores WHERE id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, obj.getId());
 
             stmt.execute();
             stmt.close();
-            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso.");
+            JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso.");
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir cliente." + erro);
+            JOptionPane.showMessageDialog(null, "Erro ao excluir fornecedores." + erro);
         }
     }
 
@@ -136,7 +135,6 @@ public class FornecedoresDao {
             JOptionPane.showMessageDialog(null, "Erro ao listar fornecedores." + erro);
             return null;
         }
-
     }
     
 
@@ -173,6 +171,7 @@ public class FornecedoresDao {
             return null;
         }
     }
+    
 
     public List<Fornecedores> buscarFornecedorPorNome(String nome) {
 
@@ -210,6 +209,7 @@ public class FornecedoresDao {
             return null;
         }
     }
+    
 
     public Fornecedores buscaCep(String cep) {
 

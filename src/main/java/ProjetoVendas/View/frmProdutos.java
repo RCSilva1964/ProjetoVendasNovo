@@ -1,7 +1,9 @@
 package ProjetoVendas.View;
 
 import ProjetoVendas.Dao.ClientesDao;
+import ProjetoVendas.Dao.FornecedoresDao;
 import ProjetoVendas.Model.Clientes;
+import ProjetoVendas.Model.Fornecedores;
 import ProjetoVendas.Model.Utilitarios;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -64,7 +66,7 @@ public class frmProdutos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtDescricao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPreco = new javax.swing.JTextField();
+        txtQtdEstoque = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -73,8 +75,8 @@ public class frmProdutos extends javax.swing.JFrame {
         btnPesquisarDados = new javax.swing.JToggleButton();
         btnFechar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        cbxFornecedor = new javax.swing.JComboBox<>();
-        txtQtdEstoque = new javax.swing.JTextField();
+        cbxFornecedor = new javax.swing.JComboBox();
+        txtPreco = new javax.swing.JTextField();
         jpnConsultaClientes = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
@@ -138,7 +140,7 @@ public class frmProdutos extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Preço:");
 
-        txtPreco.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        txtQtdEstoque.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -196,11 +198,17 @@ public class frmProdutos extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Fornecedor:");
 
-        cbxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxFornecedor.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbxFornecedorAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        txtQtdEstoque.setEditable(false);
-        txtQtdEstoque.setBackground(new java.awt.Color(70, 73, 75));
-        txtQtdEstoque.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        txtPreco.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jpnDadosPessoaisLayout = new javax.swing.GroupLayout(jpnDadosPessoais);
         jpnDadosPessoais.setLayout(jpnDadosPessoaisLayout);
@@ -208,50 +216,42 @@ public class frmProdutos extends javax.swing.JFrame {
             jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
                         .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(btnSalvar)
-                                .addGap(111, 111, 111)
-                                .addComponent(btnEditar)
-                                .addGap(97, 97, 97)
-                                .addComponent(btnExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                                .addComponent(btnFechar))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
-                        .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
+                            .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(btnNovo))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
-                                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4))
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
+                                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
+                                        .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
                                         .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbxFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnPesquisarDados)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(60, 60, 60))
+                                .addComponent(btnPesquisarDados))
+                            .addComponent(cbxFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(btnNovo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnFechar)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jpnDadosPessoaisLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditar, btnExcluir, btnFechar, btnNovo, btnSalvar});
@@ -264,28 +264,33 @@ public class frmProdutos extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarDados))
-                .addGap(18, 18, 18)
-                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
+                        .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisarDados))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpnDadosPessoaisLayout.createSequentialGroup()
+                        .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(3, 3, 3)))
                 .addGap(18, 18, 18)
                 .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(155, 155, 155)
-                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(140, 140, 140)
+                .addGroup(jpnDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnSalvar)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
                     .addComponent(btnFechar))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jpnDadosPessoaisLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditar, btnExcluir, btnFechar, btnNovo, btnSalvar});
@@ -334,16 +339,18 @@ public class frmProdutos extends javax.swing.JFrame {
         jpnConsultaClientesLayout.setHorizontalGroup(
             jpnConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnConsultaClientesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(jpnConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 905, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpnConsultaClientesLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnPesquisar)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(btnPesquisar))
+                    .addGroup(jpnConsultaClientesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnConsultaClientesLayout.setVerticalGroup(
             jpnConsultaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,6 +510,17 @@ public class frmProdutos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPesquisarDadosActionPerformed
 
+    private void cbxFornecedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbxFornecedorAncestorAdded
+        FornecedoresDao dao = new FornecedoresDao();
+        List<Fornecedores> listaDeFornecedores = dao.listarFornecedores();
+        
+        cbxFornecedor.removeAll();
+        
+        for(Fornecedores f : listaDeFornecedores) {
+            cbxFornecedor.addItem(f);
+        }
+    }//GEN-LAST:event_cbxFornecedorAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -548,7 +566,7 @@ public class frmProdutos extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnPesquisar;
     private javax.swing.JToggleButton btnPesquisarDados;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> cbxFornecedor;
+    private javax.swing.JComboBox cbxFornecedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;

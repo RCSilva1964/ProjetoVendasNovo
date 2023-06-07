@@ -1,6 +1,5 @@
 package ProjetoVendas.View;
 
-import ProjetoVendas.Dao.ClientesDao;
 import ProjetoVendas.Dao.FornecedoresDao;
 import ProjetoVendas.Dao.ProdutosDao;
 import ProjetoVendas.Model.Clientes;
@@ -36,6 +35,7 @@ public class frmProdutos extends javax.swing.JFrame {
 
     public frmProdutos() {
         initComponents();
+
     }
 
     /**
@@ -67,8 +67,8 @@ public class frmProdutos extends javax.swing.JFrame {
         btnPesquisarDados = new javax.swing.JToggleButton();
         btnFechar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        cbxFornecedor = new javax.swing.JComboBox();
         txtPreco = new javax.swing.JTextField();
+        cbxFornecedor = new javax.swing.JComboBox();
         jpnConsultaProdutos = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
@@ -180,45 +180,31 @@ public class frmProdutos extends javax.swing.JFrame {
 
         btnFechar.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         btnFechar.setText("FECHAR");
-        btnFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFecharActionPerformed(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Fornecedor:");
 
-        cbxFornecedor.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbxFornecedorAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         txtPreco.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+
+        cbxFornecedor.setEditable(true);
 
         javax.swing.GroupLayout jpnDadosProdutosLayout = new javax.swing.GroupLayout(jpnDadosProdutos);
         jpnDadosProdutos.setLayout(jpnDadosProdutosLayout);
         jpnDadosProdutosLayout.setHorizontalGroup(
             jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnDadosProdutosLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosProdutosLayout.createSequentialGroup()
+                    .addGroup(jpnDadosProdutosLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addComponent(jLabel18))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel18)
                             .addGroup(jpnDadosProdutosLayout.createSequentialGroup()
+                                .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGap(23, 23, 23)
                                 .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jpnDadosProdutosLayout.createSequentialGroup()
                                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,21 +214,22 @@ public class frmProdutos extends javax.swing.JFrame {
                                         .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnExcluir))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnPesquisarDados))
-                            .addComponent(cbxFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosProdutosLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                                .addComponent(btnPesquisarDados))))
+                    .addGroup(jpnDadosProdutosLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
                         .addComponent(btnNovo)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnFechar)))
+                        .addComponent(btnFechar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpnDadosProdutosLayout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
@@ -273,16 +260,16 @@ public class frmProdutos extends javax.swing.JFrame {
                         .addGap(3, 3, 3)))
                 .addGap(18, 18, 18)
                 .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(34, 34, 34)
                 .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnSalvar)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
                     .addComponent(btnFechar))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jpnDadosProdutosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditar, btnExcluir, btnFechar, btnNovo, btnSalvar});
@@ -302,17 +289,14 @@ public class frmProdutos extends javax.swing.JFrame {
 
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Código", "Descrição", "Preço", "Qtd. Estoque", "Fornecedor"
+                "Id", "Descrição", "Preço", "Qtd. Estoque", "Fornecedor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -386,17 +370,18 @@ public class frmProdutos extends javax.swing.JFrame {
             obj.setDescricao(txtDescricao.getText());
             obj.setPreco(Double.parseDouble(txtPreco.getText()));
             obj.setQtd_estoque(Integer.parseInt(txtQtdEstoque.getText()));
-            
+
             Fornecedores f = new Fornecedores();
-            f = (Fornecedores)cbxFornecedor.getSelectedItem();
+            f = (Fornecedores) cbxFornecedor.getSelectedItem();
             obj.setFornecedor(f);
 
             ProdutosDao dao = new ProdutosDao();
             dao.cadastrarProduto(obj);
-            
-            new Utilitarios().LimpaTela(jpnDadosProdutos);
 
+            new Utilitarios().LimpaTela(jpnDadosProdutos);       
+            
         } catch (Exception e) {
+            
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -410,11 +395,21 @@ public class frmProdutos extends javax.swing.JFrame {
 
         try {
 
-            Clientes obj = new Clientes();
-            obj.setNome(txtDescricao.getText());            
+            Produtos obj = new Produtos();
+            obj.setId(Integer.parseInt(txtCodigo.getText()));
+            obj.setDescricao(txtDescricao.getText());
+            obj.setPreco(Double.parseDouble(txtPreco.getText()));
+            obj.setQtd_estoque(Integer.parseInt(txtQtdEstoque.getText()));
 
-            ClientesDao dao = new ClientesDao();
-            dao.alterarCliente(obj);
+            Fornecedores f = new Fornecedores();
+            f = (Fornecedores) cbxFornecedor.getSelectedItem();
+
+            obj.setFornecedor(f);
+
+            ProdutosDao dao = new ProdutosDao();
+            dao.alterarProdutos(obj);
+
+            new Utilitarios().LimpaTela(jpnDadosProdutos);
 
         } catch (Exception e) {
         }
@@ -423,19 +418,34 @@ public class frmProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
-       
+
+        jTabbedPane1.setSelectedIndex(0);
+
+        txtCodigo.setText(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0).toString());
+        txtDescricao.setText(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 1).toString());
+        txtPreco.setText(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 2).toString());
+        txtQtdEstoque.setText(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 3).toString());
+
+        Fornecedores f = new Fornecedores();
+        FornecedoresDao dao = new FornecedoresDao();
+
+        f = dao.consultaPorNome(tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 4).toString());
+
+        cbxFornecedor.removeAllItems();
+        cbxFornecedor.setSelectedItem(f);
+
     }//GEN-LAST:event_tblProdutosMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
         try {
 
-            Clientes obj = new Clientes();
+            Produtos obj = new Produtos();
 
             obj.setId(Integer.parseInt(txtCodigo.getText()));
 
-            ClientesDao dao = new ClientesDao();
-            dao.excluirCliente(obj);
+            ProdutosDao dao = new ProdutosDao();
+            dao.excluirProdutos(obj);
 
         } catch (Exception e) {
         }
@@ -450,37 +460,33 @@ public class frmProdutos extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
 
         new Utilitarios().LimpaTela(jpnDadosProdutos);
+
+        FornecedoresDao dao = new FornecedoresDao();
+        List<Fornecedores> listaDeFornecedores = dao.listarFornecedores();
+        cbxFornecedor.removeAllItems();
+
+        for (Fornecedores f : listaDeFornecedores) {
+            cbxFornecedor.addItem(f);
+        }
     }//GEN-LAST:event_btnNovoActionPerformed
 
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnFecharActionPerformed
-
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        String nome = txtPesquisa.getText() + "%";
+        String nome = "%" + txtPesquisa.getText() + "%";
 
-        ClientesDao dao = new ClientesDao();
-        List<Clientes> lista = dao.buscarClientePorNome(nome);
+        ProdutosDao dao = new ProdutosDao();
+        List<Produtos> lista = dao.ListarProdutosPorNome(nome);
 
         DefaultTableModel dados = (DefaultTableModel) tblProdutos.getModel();
         dados.setNumRows(0);
 
-        for (Clientes c : lista) {
+        for (Produtos c : lista) {
             dados.addRow(new Object[]{
                 c.getId(),
-                c.getNome(),
-                c.getRg(),
-                c.getCpf(),
-                c.getEmail(),
-                c.getTelefone(),
-                c.getCelular(),
-                c.getCep(),
-                c.getEndereco(),
-                c.getNumero(),
-                c.getComplemento(),
-                c.getBairro(),
-                c.getCidade(),
-                c.getUf()
+                c.getDescricao(),
+                c.getPreco(),
+                c.getQtd_estoque(),
+                c.getFornecedor().getNome()
+                
             });
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
@@ -488,32 +494,20 @@ public class frmProdutos extends javax.swing.JFrame {
     private void btnPesquisarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDadosActionPerformed
 
         String nome = txtDescricao.getText();
-        Clientes obj = new Clientes();
-        ClientesDao dao = new ClientesDao();
+        Produtos obj = new Produtos();
+        ProdutosDao dao = new ProdutosDao();
 
-        obj = dao.consultaPorNome(nome);
+     /*   obj = dao.consultaPorNome(nome);
 
         if (obj.getNome() != null) {
 
             txtCodigo.setText(String.valueOf(obj.getId()));
             txtDescricao.setText(obj.getNome());
-           
 
         } else {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
-        }
+        } */
     }//GEN-LAST:event_btnPesquisarDadosActionPerformed
-
-    private void cbxFornecedorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbxFornecedorAncestorAdded
-        FornecedoresDao dao = new FornecedoresDao();
-        List<Fornecedores> listaDeFornecedores = dao.listarFornecedores();
-        
-        cbxFornecedor.removeAll();
-        
-        for(Fornecedores f : listaDeFornecedores) {
-            cbxFornecedor.addItem(f);
-        }
-    }//GEN-LAST:event_cbxFornecedorAncestorAdded
 
     /**
      * @param args the command line arguments

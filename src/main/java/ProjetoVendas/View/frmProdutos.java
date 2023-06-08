@@ -2,15 +2,13 @@ package ProjetoVendas.View;
 
 import ProjetoVendas.Dao.FornecedoresDao;
 import ProjetoVendas.Dao.ProdutosDao;
-import ProjetoVendas.Model.Clientes;
 import ProjetoVendas.Model.Fornecedores;
 import ProjetoVendas.Model.Produtos;
 import ProjetoVendas.Model.Utilitarios;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 public class frmProdutos extends javax.swing.JFrame {
 
@@ -35,7 +33,6 @@ public class frmProdutos extends javax.swing.JFrame {
 
     public frmProdutos() {
         initComponents();
-
     }
 
     /**
@@ -47,8 +44,6 @@ public class frmProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -75,12 +70,6 @@ public class frmProdutos extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
-
-        jLabel12.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Cidade:");
-
-        jTextField8.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -258,7 +247,6 @@ public class frmProdutos extends javax.swing.JFrame {
                             .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(3, 3, 3)))
-                .addGap(18, 18, 18)
                 .addGroup(jpnDadosProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
@@ -269,7 +257,7 @@ public class frmProdutos extends javax.swing.JFrame {
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir)
                     .addComponent(btnFechar))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jpnDadosProdutosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditar, btnExcluir, btnFechar, btnNovo, btnSalvar});
@@ -363,7 +351,6 @@ public class frmProdutos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
         try {
 
             Produtos obj = new Produtos();
@@ -378,10 +365,10 @@ public class frmProdutos extends javax.swing.JFrame {
             ProdutosDao dao = new ProdutosDao();
             dao.cadastrarProduto(obj);
 
-            new Utilitarios().LimpaTela(jpnDadosProdutos);       
-            
+            new Utilitarios().LimpaTela(jpnDadosProdutos);
+
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -416,6 +403,7 @@ public class frmProdutos extends javax.swing.JFrame {
 
         new Utilitarios().LimpaTela(jpnDadosProdutos);
     }//GEN-LAST:event_btnEditarActionPerformed
+
 
     private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
 
@@ -453,12 +441,13 @@ public class frmProdutos extends javax.swing.JFrame {
         new Utilitarios().LimpaTela(jpnDadosProdutos);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
 
     }//GEN-LAST:event_formWindowClosed
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
 
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         new Utilitarios().LimpaTela(jpnDadosProdutos);
 
         FornecedoresDao dao = new FornecedoresDao();
@@ -469,6 +458,7 @@ public class frmProdutos extends javax.swing.JFrame {
             cbxFornecedor.addItem(f);
         }
     }//GEN-LAST:event_btnNovoActionPerformed
+
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         String nome = "%" + txtPesquisa.getText() + "%";
@@ -486,10 +476,11 @@ public class frmProdutos extends javax.swing.JFrame {
                 c.getPreco(),
                 c.getQtd_estoque(),
                 c.getFornecedor().getNome()
-                
+
             });
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
 
     private void btnPesquisarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDadosActionPerformed
 
@@ -497,16 +488,25 @@ public class frmProdutos extends javax.swing.JFrame {
         Produtos obj = new Produtos();
         ProdutosDao dao = new ProdutosDao();
 
-     /*   obj = dao.consultaPorNome(nome);
+        obj = dao.ConsultaPorNome(nome);
+        cbxFornecedor.removeAllItems();
 
-        if (obj.getNome() != null) {
+        if (obj.getDescricao() != null) {
 
             txtCodigo.setText(String.valueOf(obj.getId()));
-            txtDescricao.setText(obj.getNome());
+            txtDescricao.setText(obj.getDescricao());
+            txtPreco.setText(String.valueOf(obj.getPreco()));
+            txtQtdEstoque.setText(String.valueOf(obj.getQtd_estoque()));
+
+            Fornecedores f = new Fornecedores();
+            FornecedoresDao fdao = new FornecedoresDao();
+
+            f = fdao.consultaPorNome(obj.getFornecedor().getNome());
+            cbxFornecedor.getModel().setSelectedItem(f);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
-        } */
+            JOptionPane.showMessageDialog(null, "Fornecedor não encontrado.");
+        }
     }//GEN-LAST:event_btnPesquisarDadosActionPerformed
 
     /**
@@ -523,16 +523,24 @@ public class frmProdutos extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProdutos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProdutos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProdutos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProdutos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -556,7 +564,6 @@ public class frmProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cbxFornecedor;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
@@ -566,7 +573,6 @@ public class frmProdutos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel jpnConsultaProdutos;
     private javax.swing.JPanel jpnDadosProdutos;
     private javax.swing.JTable tblProdutos;

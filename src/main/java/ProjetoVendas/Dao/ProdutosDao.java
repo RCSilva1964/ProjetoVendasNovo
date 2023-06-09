@@ -178,4 +178,39 @@ public class ProdutosDao {
             return null;
         }
     }
+
+
+     public Produtos BuscaPorCodigo(int id) {
+        try {            
+
+            String sql = "SELECT p.id, p.descricao, p.preco, p.qtd_estoque, f.nome FROM tb_produtos as p "
+                    + "INNER JOIN tb_fornecedores as f on (p.for_id = f.id) WHERE p.id=?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Produtos obj = new Produtos();
+            Fornecedores f = new Fornecedores();
+
+            if (rs.next()) {
+                obj.setId(rs.getInt("p.id"));
+                obj.setDescricao(rs.getString("p.descricao"));
+                obj.setPreco(rs.getDouble("p.preco"));
+                obj.setQtd_estoque(rs.getInt("p.qtd_estoque"));
+
+                f.setNome(rs.getString(("f.nome")));
+                obj.setFornecedor(f);
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado.");
+            return null;
+        }
+    }
+
+
 }

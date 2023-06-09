@@ -7,10 +7,12 @@ import ProjetoVendas.Model.Clientes;
 import ProjetoVendas.Model.Fornecedores;
 import ProjetoVendas.Model.Produtos;
 import ProjetoVendas.Model.Utilitarios;
+import java.util.Date;
+import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 public class frmVendas extends javax.swing.JFrame {
 
@@ -58,7 +60,7 @@ public class frmVendas extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtCódigo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDescProduto = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
@@ -126,6 +128,7 @@ public class frmVendas extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Data:");
 
+        txtData.setEditable(false);
         txtData.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
 
         btnBuscaCliente.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
@@ -141,6 +144,11 @@ public class frmVendas extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCPFKeyPressed(evt);
+            }
+        });
 
         txtNome.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
 
@@ -190,7 +198,12 @@ public class frmVendas extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Código:");
 
-        txtCódigo.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        txtCodigo.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -239,18 +252,17 @@ public class frmVendas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAddItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(txtCódigo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnBuscaProduto))
-                        .addComponent(txtDescProduto)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscaProduto))
+                    .addComponent(txtDescProduto)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -259,7 +271,7 @@ public class frmVendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtCódigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscaProduto))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -423,9 +435,11 @@ public class frmVendas extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // Carrega a lista de Clientes;
-        listar();
+        Date agora = new Date();
+        SimpleDateFormat dataBr = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = dataBr.format(agora);
+        txtData.setText(dataFormatada);
     }//GEN-LAST:event_formWindowActivated
-
 
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -442,7 +456,7 @@ public class frmVendas extends javax.swing.JFrame {
 
         if (obj.getNome() != null) {
 
-        /*    txtCodigo.setText(String.valueOf(obj.getId()));
+            /*    txtCodigo.setText(String.valueOf(obj.getId()));
             txtNome.setText(obj.getNome());
             ftxtRG.setText(obj.getRg());
             ftxtCPF.setText(obj.getCpf());
@@ -456,7 +470,6 @@ public class frmVendas extends javax.swing.JFrame {
             txtBairro.setText(obj.getBairro());
             txtCidade.setText(obj.getCidade());
             cbxUF.setSelectedItem(obj.getUf());*/
-
         } else {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
         }
@@ -467,7 +480,12 @@ public class frmVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscaClienteActionPerformed
 
     private void btnBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaProdutoActionPerformed
-        // TODO add your handling code here:
+        Produtos obj = new Produtos();
+        ProdutosDao dao = new ProdutosDao();
+
+        obj = dao.BuscaPorCodigo(Integer.parseInt(txtCodigo.getText()));
+        txtDescProduto.setText(obj.getDescricao());
+        txtPreco.setText(String.valueOf(obj.getPreco()));
     }//GEN-LAST:event_btnBuscaProdutoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -478,8 +496,31 @@ public class frmVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPagamentoActionPerformed
 
+    private void txtCPFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyPressed
 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            Clientes obj = new Clientes();
+            ClientesDao dao = new ClientesDao();
+
+            obj = dao.BuscaPorCPF(txtCPF.getText());
+            txtNome.setText(obj.getNome());
+        }
+
+    }//GEN-LAST:event_txtCPFKeyPressed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            Produtos obj = new Produtos();
+            ProdutosDao dao = new ProdutosDao();
+
+            obj = dao.BuscaPorCodigo(Integer.parseInt(txtCodigo.getText()));
+            txtDescProduto.setText(obj.getDescricao());
+            txtPreco.setText(String.valueOf(obj.getPreco()));
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -552,7 +593,7 @@ public class frmVendas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblItens;
     private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JTextField txtCódigo;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtDescProduto;
     private javax.swing.JTextField txtNome;

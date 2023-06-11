@@ -5,7 +5,6 @@ import ProjetoVendas.Model.Clientes;
 import ProjetoVendas.Model.Utilitarios;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

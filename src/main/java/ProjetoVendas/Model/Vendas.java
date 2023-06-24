@@ -39,6 +39,14 @@ public class Vendas {
     public void setTotal_venda(double total_venda) {
         this.total_venda = total_venda;
     }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
 }
 
 

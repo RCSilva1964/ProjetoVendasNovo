@@ -24,7 +24,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     // dependencia para conectar com mysql.
-    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
     
     // dependencia para buscaCep.
     dependencies {

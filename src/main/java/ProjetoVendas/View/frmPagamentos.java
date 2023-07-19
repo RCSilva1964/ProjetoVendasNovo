@@ -4,7 +4,7 @@
  */
 package ProjetoVendas.View;
 
-import Dao.VendasDao;
+import ProjetoVendas.Dao.VendasDao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -241,6 +241,10 @@ public class frmPagamentos extends javax.swing.JFrame {
         
         VendasDao dao_v = new VendasDao();
         dao_v.CadastrarVenda(objv);
+        
+        // Retorna o id da ultima venda realizada:
+        objv.setId(dao_v.retornaUltimaVenda());
+        System.out.println("Id da última venda: " + objv.getId());
     }//GEN-LAST:event_btnFinalizaVendaActionPerformed
    
 

@@ -1,4 +1,4 @@
-package Dao;
+package ProjetoVendas.Dao;
 
 import ProjetoVendas.JDBC.ConnectionFactory;
 import ProjetoVendas.Model.Vendas;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import com.mysql.cj.protocol.Resultset;
+//import com.mysql.cj.protocol.Resultset;
 
 public class VendasDao {
 
@@ -50,7 +50,7 @@ public class VendasDao {
         try {
             int idvenda = 0;
 
-            String sql = "SELECT max(id) id from tb_vendas.";
+            String sql = "SELECT max(id) id from tb_vendas";
             PreparedStatement ps = con.prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
@@ -63,9 +63,12 @@ public class VendasDao {
 
             return idvenda;
 
-        }catch (SQLException e) {
+        }catch (SQLException erro) {
+            
+            JOptionPane.showMessageDialog(null, "Erro ao retornar a última venda. " + erro);
             throw new RuntimeException();
         }
-
+    
     }
+    
 }

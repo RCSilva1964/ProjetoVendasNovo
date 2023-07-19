@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import ProjetoVendas.Model.Clientes;
 import ProjetoVendas.Model.Vendas;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,11 +21,9 @@ import ProjetoVendas.Model.Vendas;
 public class frmPagamentos extends javax.swing.JFrame {
 
     Clientes cliente = new Clientes();
-
-
-    /**
-     * Creates new form frmPagamentos
-     */
+    
+    DefaultTableModel carrinho;
+    
     public frmPagamentos() {
         initComponents();
 
@@ -244,7 +243,9 @@ public class frmPagamentos extends javax.swing.JFrame {
         
         // Retorna o id da ultima venda realizada:
         objv.setId(dao_v.retornaUltimaVenda());
-        System.out.println("Id da última venda: " + objv.getId());
+        // System.out.println("Id da última venda: " + objv.getId());
+        
+        
     }//GEN-LAST:event_btnFinalizaVendaActionPerformed
    
 

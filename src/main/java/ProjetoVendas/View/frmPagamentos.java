@@ -4,6 +4,7 @@
  */
 package ProjetoVendas.View;
 
+import ProjetoVendas.Dao.ItemVendaDao;
 import ProjetoVendas.Dao.VendasDao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,6 +12,8 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import ProjetoVendas.Model.Clientes;
+import ProjetoVendas.Model.ItemVenda;
+import ProjetoVendas.Model.Produtos;
 import ProjetoVendas.Model.Vendas;
 import javax.swing.table.DefaultTableModel;
 
@@ -245,7 +248,25 @@ public class frmPagamentos extends javax.swing.JFrame {
         objv.setId(dao_v.retornaUltimaVenda());
         // System.out.println("Id da última venda: " + objv.getId());
         
+        // Cadastrando os produtos na tabela itemVendas:
         
+        for (int i = 0; i < carrinho.getRowCount(); i++) {
+            
+            Produtos objp = new Produtos();
+            
+            ItemVenda item = new ItemVenda();
+            item.setVenda(objv);
+            
+            objp.setId(Integer.parseInt(carrinho.getValueAt(i, 0).toString()));
+            item.setProduto(objp);
+            item.setQtd(Integer.parseInt(carrinho.getValueAt(i, 2).toString()));
+            item.setSubtotal(Double.parseDouble(carrinho.getValueAt(i, 3).toString()));
+            
+            ItemVendaDao daoitem = new ItemVendaDao();
+            daoitem.cadastrarItem(item);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Venda registrada com sucesso!");
     }//GEN-LAST:event_btnFinalizaVendaActionPerformed
    
 

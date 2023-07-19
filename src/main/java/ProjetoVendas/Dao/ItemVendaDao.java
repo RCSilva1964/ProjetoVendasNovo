@@ -32,7 +32,7 @@ public class ItemVendaDao {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Item registrado com sucesso!");
+            // JOptionPane.showMessageDialog(null, "Item registrado com sucesso!");
 
         }catch (Exception erro) {
                         
